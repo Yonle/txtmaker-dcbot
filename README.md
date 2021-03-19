@@ -1,2 +1,2 @@
-# txtmaker-tgbot
-A simple telegram bots that creates TXT files from user Text.
+# txtmaker-dcbot
+A simple txt maker for discord bot
