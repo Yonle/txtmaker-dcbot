@@ -1,12 +1,14 @@
-const { Telegraf } = require("telegraf");
+const { Client } = require("discord.js");
 const { Readable } = require("stream");
-const bot = new Telegraf("Y o u r  b o t  t o k e n");
+const bot = new Client();
 
-bot.on('text', ctx => {
-	var text = ctx.message.text;
-	ctx.replyWithDocument({
-		source: (() => new Readable.from(text.toString()))(),
-		filename: `${ctx.message.from.first_name}.txt`
+bot.on('message', message => {
+	var text = message.content;
+	message.channel.send({
+                files: [
+		  attachments: (() => new Readable.from(text.toString()))(),
+		  name: `${message.author.name}.txt`
+                ]
 	}).catch(console.error);
 });
-bot.launch().then(() => console.log("Ready")).catch(console.error);
+bot.login("Y o u r  b o t  t o k e n").then(() => console.log("Ready")).catch(console.error);
