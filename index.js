@@ -1,12 +1,11 @@
 const { Client } = require("discord.js");
-const { Readable } = require("stream");
 const bot = new Client();
 
 bot.on('message', message => {
 	var text = message.content;
 	message.channel.send({
                 files: [{
-		  attachments: (() => new Readable.from(text.toString()))(),
+		  attachments: new Buffer.from(text),
 		  name: `${message.author.name}.txt`
                 }]
 	}).catch(console.error);
